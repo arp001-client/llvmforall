@@ -1,0 +1,6 @@
+jobs:
+  build:
+
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    steps:
+      - docker 
