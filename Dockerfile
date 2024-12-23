@@ -1,11 +1,13 @@
-ARG llvmver=""
+
 
 FROM ubuntu
 
-
+ARG llvmver=19
 copy ins.sh .
-run apot update
+run echo $llvmver 
+run apt update
 run apt install -y wget
 run bash ins.sh
-run ./llvm.sh ${llvmver} all
+run apt install lsb-release wget software-properties-common gnupg -y
+run ./llvm.sh $llvmver all
 cmd bash 
