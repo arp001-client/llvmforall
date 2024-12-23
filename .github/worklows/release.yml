@@ -1,6 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build and publish
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
 jobs:
   build:
 
     runs-on: blacksmith-2vcpu-ubuntu-2204
     steps:
-      - docker 
+      - uses: actions/checkout@v4
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: build
+        run: docker build -t ghcr.io/sca255/llvm
+      -name: push
+        run: docker push ghcr.io/sca255/llvm
+        
