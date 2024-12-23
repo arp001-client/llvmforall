@@ -23,7 +23,7 @@ jobs:
       - name: ls
         run: ls
       - name: build
-        run: docker build -t ghcr.io/sca255/llvm:19 --build-arg llvmver=19 .
+        run: docker build -t ghcr.io/${{ github.actor }}/llvm:19 --build-arg llvmver=19 .
       - name: push
-        run: docker push ghcr.io/sca255/llvm:19
+        run: docker push ghcr.io/${{ github.actor }}/llvm:19
         
